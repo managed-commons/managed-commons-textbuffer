@@ -1,0 +1,11 @@
+bin/
+obj/
+*.user
+*.suo
+*.xml
+*.userprefs
+*.pidb
+*.nupkg
+test-results/
+/packages/
+/.vs

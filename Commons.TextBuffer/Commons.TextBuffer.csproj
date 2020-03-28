@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RootNamespace>Commons.TextBuffer</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Version>0.0.1</Version>
+    <AssemblyName>Commons.TextBuffer</AssemblyName>
+    <OutputType>Library</OutputType>
+    <Authors>Rafael 'Monoman' Teixeira</Authors>
+    <PackageProjectUrl>https://github.com/managed-commons</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/managed-commons/managed-commons-textbuffer</RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageReleaseNotes>Starting the port from Swift</PackageReleaseNotes>
+    <Description>Managed Commons library for an optimized TextBuffer</Description>
+    <Copyright>Copyright © 2020 Rafael 'Monoman' Teixeira</Copyright>
+    <DocumentationFile>Commons.TextBuffer.Documentation.xml</DocumentationFile>
+    <PackageTags>TextEditor</PackageTags>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageId>Commons.TextBuffer</PackageId>
+    <PackageOutputPath>..\.nugets</PackageOutputPath>
+    <PackageIcon>TextBuffer.png</PackageIcon>
+    <ApplicationIcon>TextBuffer.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="TextBufferKit\TextRange.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Commons.TextBuffer.Documentation.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="TextBuffer.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="TextRange.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>
