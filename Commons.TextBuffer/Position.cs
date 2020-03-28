@@ -38,8 +38,7 @@ namespace Commons.TextBuffer
         /// </summary>
         /// <param name="line">Line</param>
         /// <param name="column">Column</param>
-        public Position(int line, int column)
-        {
+        public Position(int line, int column) {
             if (line < 1)
                 throw new ArgumentOutOfRangeException(nameof(line));
             if (column < 1)
@@ -117,7 +116,7 @@ namespace Commons.TextBuffer
         ///   This instance occurs in the same position in the sort order as <paramref name="other" />.
         ///   Greater than zero
         ///   This instance follows <paramref name="other" /> in the sort order.</returns>
-        public int CompareTo(Position other) => throw new NotImplementedException();
+        public int CompareTo(Position other) => Line == other.Line ? Column - other.Column : Line - other.Line;
 
         /// <summary>
         /// Compares for equality

@@ -31,7 +31,7 @@ namespace Commons.TextBuffer
     /// <summary>
     /// A range in the editor. (StartLineNumber,StartColumn) is &lt;= (EndLineNumber,EndColumn)
     /// </summary>
-    public readonly struct TextRange : IEquatable<TextRange>
+    public readonly struct TextRange : IEquatable<TextRange>, IComparable<TextRange>
     {
         /// <summary>
         /// Build a new immutable TextRange
@@ -41,8 +41,7 @@ namespace Commons.TextBuffer
         /// <param name="startColumn">Column on which the range starts in line `StartLineNumber` (starts at 1)</param>
         /// <param name="endLineNumber">Line number on which the range ends</param>
         /// <param name="endColumn">Column on which the range ends in line `EndLineNumber`</param>
-        public TextRange(int startLineNumber, int startColumn, int endLineNumber, int endColumn)
-        {
+        public TextRange(int startLineNumber, int startColumn, int endLineNumber, int endColumn) {
             if (startLineNumber < 1)
                 throw new ArgumentOutOfRangeException(nameof(startLineNumber));
             if (startColumn < 1)
@@ -106,15 +105,13 @@ namespace Commons.TextBuffer
         /// Positive if a &gt; b
         /// </returns>
         public static int CompareUsingEnds(TextRange a, TextRange b)
-        {
-            return a.EndLineNumber == b.EndLineNumber
+            => a.EndLineNumber == b.EndLineNumber
                 ? a.EndColumn == b.EndColumn
                     ? a.StartLineNumber == b.StartLineNumber
                         ? a.StartColumn - b.StartColumn
                         : a.StartLineNumber - b.StartLineNumber
                     : a.EndColumn - b.EndColumn
                 : a.EndLineNumber - b.EndLineNumber;
-        }
 
         /// <summary>
         /// Inequality operator
@@ -125,12 +122,57 @@ namespace Commons.TextBuffer
         public static bool operator !=(TextRange left, TextRange right) => !(left == right);
 
         /// <summary>
+        /// Less than comparison operator
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns>True if left is before right</returns>
+        public static bool operator <(TextRange left, TextRange right) => left.CompareTo(right) < 0;
+
+        /// <summary>
+        /// Less than or equal comparison operator
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns>True if left is before or the same as right</returns>
+        public static bool operator <=(TextRange left, TextRange right) => left.CompareTo(right) <= 0;
+
+        /// <summary>
         /// Equality operator
         /// </summary>
         /// <param name="left"></param>
         /// <param name="right"></param>
         /// <returns>True if left equals right</returns>
         public static bool operator ==(TextRange left, TextRange right) => left.Equals(right);
+
+        /// <summary>
+        /// Greater than comparison operator
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns>True if left is after right</returns>
+        public static bool operator >(TextRange left, TextRange right) => left.CompareTo(right) > 0;
+
+        /// <summary>
+        /// Greater than or equal comparison operator
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns>True if left is after or the same as right</returns>
+        public static bool operator >=(TextRange left, TextRange right) => left.CompareTo(right) >= 0;
+
+        /// <summary>Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.</summary>
+        /// <param name="other">An object to compare with this instance.</param>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has these meanings:
+        ///   Value
+        ///   Meaning
+        ///   Less than zero
+        ///   This instance precedes <paramref name="other" /> in the sort order.
+        ///   Zero
+        ///   This instance occurs in the same position in the sort order as <paramref name="other" />.
+        ///   Greater than zero
+        ///   This instance follows <paramref name="other" /> in the sort order.</returns>
+        public int CompareTo(TextRange other) => CompareUsingEnds(this, other);
 
         /// <summary>Indicates whether this instance and a specified object are equal.</summary>
         /// <param name="obj">The object to compare with the current instance.</param>
