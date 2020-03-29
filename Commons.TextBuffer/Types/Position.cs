@@ -31,7 +31,7 @@ namespace Commons.TextBuffer
     /// <summary>
     /// A position (line,column) in the TextBuffer
     /// </summary>
-    public readonly struct Position : IEquatable<Position>, IComparable<Position>
+    public readonly struct Position : IStruct<Position>
     {
         /// <summary>
         /// Instantiates a new Immutable Position

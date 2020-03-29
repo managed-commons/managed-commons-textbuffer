@@ -22,6 +22,7 @@
     <PackageOutputPath>..\.nugets</PackageOutputPath>
     <PackageIcon>TextBuffer.png</PackageIcon>
     <ApplicationIcon>TextBuffer.ico</ApplicationIcon>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -41,7 +42,7 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="TextRange.cs" />
+    <None Include="Types\TextRange.cs" />
   </ItemGroup>
 
   <ItemGroup>

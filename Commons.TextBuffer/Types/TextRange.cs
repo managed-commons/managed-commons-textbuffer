@@ -31,7 +31,7 @@ namespace Commons.TextBuffer
     /// <summary>
     /// A range in the editor. (StartLineNumber,StartColumn) is &lt;= (EndLineNumber,EndColumn)
     /// </summary>
-    public readonly struct TextRange : IEquatable<TextRange>, IComparable<TextRange>
+    public readonly struct TextRange : IStruct<TextRange>
     {
         /// <summary>
         /// Build a new immutable TextRange
